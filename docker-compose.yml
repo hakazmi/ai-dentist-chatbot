@@ -1,0 +1,52 @@
+version: '3.8'
+
+services:
+  # Backend Service
+  backend:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: dental-ai-backend
+    ports:
+      - "8000:8000"
+    environment:
+      - OPENAI_API_KEY=${OPENAI_API_KEY}
+    volumes:
+      - ./uploads:/app/uploads
+      - ./outputs:/app/outputs
+    networks:
+      - dental-ai-network
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+
+  # Frontend Service
+  frontend:
+    build:
+      context: ./project
+      dockerfile: Dockerfile
+    container_name: dental-ai-frontend
+    ports:
+      - "5173:5173"
+    depends_on:
+      - backend
+    networks:
+      - dental-ai-network
+    restart: unless-stopped
+    environment:
+      - VITE_API_URL=http://localhost:8000
+    volumes:
+      - ./project:/app
+      - /app/node_modules
+
+networks:
+  dental-ai-network:
+    driver: bridge
+
+volumes:
+  uploads:
+  outputs:
