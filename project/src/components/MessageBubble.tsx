@@ -25,17 +25,17 @@ export function MessageBubble({ message }: MessageBubbleProps) {
               components={{
                 // Style headers
                 h1: ({ children }) => (
-                  <h1 className="text-lg font-bold mt-2 mb-1">{children}</h1>
+                  <h1 className="text-lg font-bold mt-3 mb-2">{children}</h1>
                 ),
                 h2: ({ children }) => (
-                  <h2 className="text-base font-bold mt-2 mb-1">{children}</h2>
+                  <h2 className="text-base font-bold mt-3 mb-2">{children}</h2>
                 ),
                 h3: ({ children }) => (
-                  <h3 className="text-sm font-bold mt-2 mb-1">{children}</h3>
+                  <h3 className="text-sm font-bold mt-2 mb-2">{children}</h3>
                 ),
                 // Style paragraphs
                 p: ({ children }) => (
-                  <p className="mb-2 last:mb-0">{children}</p>
+                  <p className="mb-3 last:mb-0 leading-relaxed">{children}</p>
                 ),
                 // Style strong/bold
                 strong: ({ children }) => (
@@ -45,15 +45,17 @@ export function MessageBubble({ message }: MessageBubbleProps) {
                 em: ({ children }) => (
                   <em className="italic">{children}</em>
                 ),
-                // Style lists
+                // Style unordered lists
                 ul: ({ children }) => (
-                  <ul className="list-disc list-inside mb-2 space-y-1">{children}</ul>
+                  <ul className="list-disc pl-5 mb-3 space-y-2">{children}</ul>
                 ),
+                // Style ordered lists
                 ol: ({ children }) => (
-                  <ol className="list-decimal list-inside mb-2 space-y-1">{children}</ol>
+                  <ol className="list-decimal pl-5 mb-3 space-y-2">{children}</ol>
                 ),
+                // Style list items
                 li: ({ children }) => (
-                  <li className="ml-2">{children}</li>
+                  <li className="leading-relaxed">{children}</li>
                 ),
                 // Style code
                 code: ({ children }) => (
@@ -63,7 +65,7 @@ export function MessageBubble({ message }: MessageBubbleProps) {
                 ),
                 // Style blockquotes
                 blockquote: ({ children }) => (
-                  <blockquote className="border-l-4 border-blue-500 pl-3 italic my-2">
+                  <blockquote className="border-l-4 border-blue-500 pl-3 italic my-3">
                     {children}
                   </blockquote>
                 ),
